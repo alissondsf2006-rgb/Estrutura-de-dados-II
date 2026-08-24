@@ -1,0 +1,261 @@
+**Atividade 1 — Listas**
+Objetivo: Criar uma lista com 10 números, calcular soma, média, e resolver o desafio (maior/menor valor e quantidade de pares).
+
+# 1. Cria uma lista vazia para armazenar os números
+numeros = []
+
+# 2. Solicita os 10 valores ao usuário
+for i in range(10):
+    valor = int(input(f"Digite o {i + 1}º número inteiro: "))
+    numeros.append(valor)
+
+# 3. Exibe todos os números
+print(f"\nNúmeros digitados: {numeros}")
+
+# 4. Calcula a soma
+soma = sum(numeros)
+print(f"Soma: {soma}")
+
+# 5. Calcula a média
+media = soma / len(numeros)
+print(f"Média: {media:.2f}")
+
+# --- DESAFIO ---
+# Encontrar o maior e o menor valor
+print(f"Maior valor: {max(numeros)}")
+print(f"Menor valor: {min(numeros)}")
+
+# Quantidade de números pares
+quantidade_pares = 0
+for numero in numeros:
+    if numero % 2 == 0:
+        quantidade_pares += 1
+
+print(f"Quantidade de números pares: {quantidade_pares}")
+
+**Atividade 2 — Matrizes**
+Objetivo: Criar uma matriz 3x3, preenchê-la, exibi-la, e calcular somas e o maior elemento.
+
+# Criando a matriz 3x3 e solicitando os valores
+matriz = []
+
+for i in range(3):
+    linha = []
+    for j in range(3):
+        valor = int(input(f"Digite o valor para a posição [{i}][{j}]: "))
+        linha.append(valor)
+    matriz.append(linha)
+
+# 1. Exibe a matriz
+print("\nMatriz:")
+for linha in matriz:
+    for valor in linha:
+        print(valor, end=" ")
+    print()
+
+# 2. Calcula a soma de todos os elementos
+soma_total = sum(sum(linha) for linha in matriz)
+print(f"\nSoma de todos os elementos: {soma_total}")
+
+# 3. Calcula a soma da diagonal principal
+soma_diagonal = 0
+for i in range(len(matriz)):
+    soma_diagonal += matriz[i][i]
+print(f"Soma da diagonal principal: {soma_diagonal}")
+
+# 4. Encontra o maior elemento
+# Podemos assumir o primeiro elemento como referência inicial
+maior = matriz[0][0]
+for linha in matriz:
+    for valor in linha:
+        if valor > maior:
+            maior = valor
+
+print(f"Maior elemento da matriz: {maior}")
+
+**Atividade 3 — Dicionário**
+Objetivo: Representar um livro usando um dicionário e manipular seus dados.
+
+livro = {}
+
+# 1 e 2. Lê os dados e armazena no dicionário
+print("--- Cadastro de Livro ---")
+livro["titulo"] = input("Título: ")
+livro["autor"] = input("Autor: ")
+livro["ano"] = int(input("Ano de publicação: "))
+livro["preco"] = float(input("Preço: R$ "))
+
+# 3. Exibe os dados
+print("\n--- Dados do Livro ---")
+for chave, valor in livro.items():
+    print(f"{chave}: {valor}")
+
+# 4. Altera o preço
+novo_preco = float(input("\nDigite o novo preço atualizado: R$ "))
+livro["preco"] = novo_preco
+
+# 5. Adiciona uma informação chamada 'categoria'
+categoria = input("Digite a categoria do livro (ex: Ficção, Tecnologia): ")
+livro["categoria"] = categoria
+
+print("\n--- Dados Atualizados do Livro ---")
+for chave, valor in livro.items():
+    print(f"{chave}: {valor}")
+
+**Atividade 4 — Dataclass**
+Objetivo: Criar uma dataclass chamada Aluno com um método para calcular a média.
+
+from dataclasses import dataclass
+
+@dataclass
+class Aluno:
+    nome: str
+    matricula: int
+    nota1: float
+    nota2: float
+
+    # Método que calcula a média das duas notas
+    def media(self) -> float:
+        return (self.nota1 + self.nota2) / 2
+
+# Testando a criação da classe conforme o exemplo da apostila
+aluno = Aluno(
+    nome="Maria",
+    matricula=12345,
+    nota1=8.0,
+    nota2=9.0
+)
+
+print(f"A média do(a) aluno(a) {aluno.nome} é {aluno.media():.2f}")
+
+**Atividade 5 — Lista de objetos**
+Objetivo: Usar a dataclass Aluno criada na Atividade 4 para registrar 5 alunos, calcular a média, exibir os aprovados e o aluno com a maior nota.
+
+from dataclasses import dataclass
+
+@dataclass
+class Aluno:
+    nome: str
+    matricula: int
+    nota1: float
+    nota2: float
+
+    def media(self) -> float:
+        return (self.nota1 + self.nota2) / 2
+
+# Criando a lista vazia
+alunos = []
+
+# Cadastrando 5 alunos
+for i in range(5):
+    print(f"\n--- Cadastro do {i + 1}º Aluno ---")
+    nome = input("Nome: ")
+    matricula = int(input("Matrícula: "))
+    nota1 = float(input("Nota 1: "))
+    nota2 = float(input("Nota 2: "))
+    
+    # Criando o objeto e adicionando à lista
+    aluno = Aluno(nome, matricula, nota1, nota2)
+    alunos.append(aluno)
+
+print("\n===== RESULTADOS =====")
+
+aluno_maior_media = alunos[0] # Variável para rastrear a maior média
+
+# 1 e 2. Calcula a média e exibe os alunos aprovados
+print("\n--- Alunos Aprovados (Média >= 7.0) ---")
+for aluno in alunos:
+    media = aluno.media()
+    
+    if media >= 7.0:
+        print(f"Aluno(a): {aluno.nome} | Média: {media:.2f}")
+        
+    # Lógica para encontrar o aluno com a maior média (item 3)
+    if media > aluno_maior_media.media():
+        aluno_maior_media = aluno
+
+# 3. Identifica o aluno com maior média
+print("\n--- Destaque ---")
+print(f"Aluno(a) com a maior média: {aluno_maior_media.nome} (Média: {aluno_maior_media.media():.2f})")
+
+**Desafio Integrador — Sistema de Estoque**
+Objetivo: Unir tudo o que foi aprendido para montar um CRUD (Create, Read, Update, Delete) simplificado através de um menu interativo e modelagem com dataclasses.
+
+Python
+from dataclasses import dataclass
+
+@dataclass
+class Produto:
+    codigo: int
+    nome: str
+    preco: float
+    quantidade: int
+
+    def valor_estoque(self) -> float:
+        return self.preco * self.quantidade
+
+# Lista que armazenará os objetos Produto
+estoque = []
+
+while True:
+    print("\n===== SISTEMA DE ESTOQUE =====")
+    print("1 - Cadastrar produto")
+    print("2 - Listar produtos")
+    print("3 - Buscar produto")
+    print("4 - Valor total do estoque")
+    print("5 - Produto mais caro")
+    print("0 - Sair")
+
+    opcao = input("\nEscolha: ")
+
+    if opcao == "1":
+        print("\n-- Cadastrar Novo Produto --")
+        codigo = int(input("Código: "))
+        nome = input("Nome: ")
+        preco = float(input("Preço: R$ "))
+        quantidade = int(input("Quantidade em estoque: "))
+        
+        produto = Produto(codigo, nome, preco, quantidade)
+        estoque.append(produto)
+        print("Produto cadastrado com sucesso!")
+
+    elif opcao == "2":
+        print("\n-- Lista de Produtos --")
+        if not estoque:
+            print("Estoque vazio.")
+        else:
+            for p in estoque:
+                print(f"[{p.codigo}] {p.nome} | R$ {p.preco:.2f} | Qtd: {p.quantidade}")
+
+    elif opcao == "3":
+        codigo_busca = int(input("\nDigite o código do produto para busca: "))
+        encontrado = False
+        
+        for p in estoque:
+            if p.codigo == codigo_busca:
+                print(f"\nProduto encontrado: {p.nome} (R$ {p.preco:.2f}) - {p.quantidade} unidades.")
+                encontrado = True
+                break
+                
+        if not encontrado:
+            print("\nProduto não encontrado.")
+
+    elif opcao == "4":
+        # Usando sum() para somar o resultado do método valor_estoque de todos os itens
+        valor_total = sum(p.valor_estoque() for p in estoque)
+        print(f"\nValor total do estoque: R$ {valor_total:.2f}")
+
+    elif opcao == "5":
+        if not estoque:
+            print("\nNão há produtos para verificar.")
+        else:
+            # Usando a função max e passando uma função lambda como chave para verificar o preço
+            produto_mais_caro = max(estoque, key=lambda p: p.preco)
+            print(f"\nProduto mais caro: {produto_mais_caro.nome} (R$ {produto_mais_caro.preco:.2f})")
+
+    elif opcao == "0":
+        print("\nSaindo do sistema... Até logo!")
+        break
+
+    else:
+        print("\nOpção inválida. Tente novamente.")
