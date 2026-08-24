@@ -1,7 +1,5 @@
-Atividade 1 — Listas
-Objetivo: Criar uma lista com 10 números, calcular soma, média, e resolver o desafio (maior/menor valor e quantidade de pares).
+**Atividade 1 — Listas**
 
-Python
 # 1. Cria uma lista vazia para armazenar os números
 numeros = []
 
