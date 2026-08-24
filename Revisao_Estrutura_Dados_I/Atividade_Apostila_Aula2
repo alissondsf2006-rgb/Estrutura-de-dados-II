@@ -1,4 +1,5 @@
 **Atividade 1 — Listas**
+Objetivo: Criar uma lista com 10 números, calcular soma, média, e resolver o desafio (maior/menor valor e quantidade de pares).
 
 # 1. Cria uma lista vazia para armazenar os números
 numeros = []
@@ -31,10 +32,10 @@ for numero in numeros:
         quantidade_pares += 1
 
 print(f"Quantidade de números pares: {quantidade_pares}")
-Atividade 2 — Matrizes
+
+**Atividade 2 — Matrizes**
 Objetivo: Criar uma matriz 3x3, preenchê-la, exibi-la, e calcular somas e o maior elemento.
 
-Python
 # Criando a matriz 3x3 e solicitando os valores
 matriz = []
 
@@ -71,10 +72,10 @@ for linha in matriz:
             maior = valor
 
 print(f"Maior elemento da matriz: {maior}")
-Atividade 3 — Dicionário
+
+**Atividade 3 — Dicionário**
 Objetivo: Representar um livro usando um dicionário e manipular seus dados.
 
-Python
 livro = {}
 
 # 1 e 2. Lê os dados e armazena no dicionário
@@ -100,10 +101,10 @@ livro["categoria"] = categoria
 print("\n--- Dados Atualizados do Livro ---")
 for chave, valor in livro.items():
     print(f"{chave}: {valor}")
-Atividade 4 — Dataclass
+
+**Atividade 4 — Dataclass**
 Objetivo: Criar uma dataclass chamada Aluno com um método para calcular a média.
 
-Python
 from dataclasses import dataclass
 
 @dataclass
@@ -126,10 +127,10 @@ aluno = Aluno(
 )
 
 print(f"A média do(a) aluno(a) {aluno.nome} é {aluno.media():.2f}")
-Atividade 5 — Lista de objetos
+
+**Atividade 5 — Lista de objetos**
 Objetivo: Usar a dataclass Aluno criada na Atividade 4 para registrar 5 alunos, calcular a média, exibir os aprovados e o aluno com a maior nota.
 
-Python
 from dataclasses import dataclass
 
 @dataclass
@@ -176,7 +177,8 @@ for aluno in alunos:
 # 3. Identifica o aluno com maior média
 print("\n--- Destaque ---")
 print(f"Aluno(a) com a maior média: {aluno_maior_media.nome} (Média: {aluno_maior_media.media():.2f})")
-Desafio Integrador — Sistema de Estoque
+
+**Desafio Integrador — Sistema de Estoque**
 Objetivo: Unir tudo o que foi aprendido para montar um CRUD (Create, Read, Update, Delete) simplificado através de um menu interativo e modelagem com dataclasses.
 
 Python
